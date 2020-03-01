@@ -1,0 +1,102 @@
+<!-- 
+    Запросите у пользователя ввести какую-то фразу. Отобразите каждое отдельное слово в виде списка ul li. Также отобразите первое слово UPPERCASE, а последние 2 с маленькой. Найдите все буквы "а" их количество в модальное окно. 
+ -->
+ 
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Homework</title>
+    <style>
+    	.modal {
+				display: none;
+				position: absolute;
+				left: 50%;
+				top: 50%;
+			  transform: translate(-50%, -50%);
+				width: 350px;
+				height: 60px;
+				overflow: auto;
+				background-color: #808080; 
+				border: 1px solid #888;
+    	}
+    	.model-content {
+    		background-color: #fefefe;
+    		border: 1px solid #888;
+    		width: 20%;
+    		}
+    	.close {
+    		color: #aaa;
+    		float: right;
+    		font-size: 28px;
+				font-weight: bold;
+    	}
+    	#result {
+    		color: #ffffff;
+				text-align: center;
+    	}
+    </style>
+</head>
+<body>
+		<p id="demo"></p>
+		<ul id="myList"></ul>
+		<button id="myBtn">Расчет количества символов "a"</button>
+		<div id="myModal" class="modal">
+			<span class="close">&times;</span>
+			<div class="modal-content">
+				<div class="modal-content">
+					<p id="result"></p>
+			</div>
+		</div>
+
+    <script>
+      var phrase = prompt("Введите фразу", "Capre diem, 58RBVRR!");
+      document.getElementById("demo").innerHTML = "Ваша фраза: " + phrase;
+
+      (function listPhrase () {
+      	if (phrase) {
+      		var signs = [".", ",", ";", ":", "!", "?", "-", "\s"];
+      			for (let i = 0; i < signs.length; i++) {
+      				phrase = phrase.replace(signs[i], "\s");
+      			};
+      	var substrs = phrase.split(" ");
+      	
+      	for (let i = 0; i < substrs.length; i++) {
+ 		     	var listPhrase = document.createElement("li");
+ 		     	if (i === 0) {
+ 		     		listPhrase.innerHTML = substrs[i].toUpperCase();
+ 		     	} else if (i >= substrs.length-1) {
+ 		     		listPhrase.innerHTML = substrs[i].toLowerCase();
+ 		     	} else {
+ 		     		listPhrase.innerHTML = substrs[i];
+ 		     	}
+      		document.getElementById("myList").appendChild(listPhrase);
+      	}
+			} else { document.getElementById("demo").innerHTML = "Mistake. Reload page, please."
+			};
+      })();	
+
+      var patt = new RegExp("a", "gi");
+   	  var a = phrase.match(patt);
+
+      var count = a.length;
+      var modal = document.getElementById('myModal');
+      var btn = document.getElementById("myBtn");
+      var span = document.getElementsByClassName("close")[0];
+
+      btn.onclick = function () {
+      	modal.style.display = "block";
+      	document.getElementById("result").innerHTML = count + " sign(s) \'а\' in your string";
+      }
+      span.onclick = function() {
+      	modal.style.display = "none";
+      }
+      window.onclick = function(event) {
+      	if(event.target == modal) {
+      		modal.style.display = "none";
+      	}
+      }
+      
+    </script>
+</body>
+</html>
