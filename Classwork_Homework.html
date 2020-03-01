@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Homework</title>
+</head>
+<body>
+	<p id="demo"></p>
+<button onclick="pauseFunction()">pauseInterval</button>
+<button onclick="returnFunction()">returnInterval</button>
+<button onclick="clearFunction()">clearInterval</button>
+
+	<script type="text/javascript">
+		var i = 1;
+	  var myVar = setInterval(myTimer, 1000);
+    
+
+      function myTimer() {
+      	if (i <= 30) {
+          document.getElementById("demo").innerHTML = i++ + " second(s)";
+        } else {
+        		i = 0;
+        }
+      }
+      function clearFunction() {
+        i = 1;
+        document.getElementById("demo").innerHTML = 0 + " second(s)";
+     	}
+
+      function pauseFunction() {
+        clearInterval(myVar);
+        }
+
+     	function returnFunction() {
+     			clearInterval(myVar);
+     			myVar = setInterval(myTimer, 1000);
+      }
+
+
+	</script>
+
+<!-- Создайте счетчик секунд, который начинает отчет с 1 и заканчивается на 30, также добавьте кнопки которые останавливают отчет, и запускают его заново и добавьте кнопку обнуляющую отcчет. Также попробуйте изменить код так чтобы отчет начинался с 30 и заканчивался на 1. -->
+</body>
+</html>
